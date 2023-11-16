@@ -1,6 +1,19 @@
 from pydantic import BaseModel
+from ticket import Ticket
 
-class Client(BaseModel):
-    id: int
+
+class ClientBase(BaseModel):
     name: str
-    #..... a completar
+    # .....a completar
+
+
+class ClientCreate(ClientBase):
+    pass
+
+
+class Client(ClientBase):
+    id: int
+    tickets: list[Ticket] = []
+
+    class Config:
+        orm_mode = True

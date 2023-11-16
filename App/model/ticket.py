@@ -1,9 +1,20 @@
 from pydantic import BaseModel
 
-class Ticket(BaseModel):
-    id: int
+
+class TicketBase(BaseModel):
     title: str
     severity: str
     priority: str
+
+
+class TicketCreate(TicketBase):
+    pass
+
+
+class Ticket(TicketBase):
+    id: int
+    owner_id: int
     state: str
-    client_id: int
+
+    class Config:
+        orm_mode = True
