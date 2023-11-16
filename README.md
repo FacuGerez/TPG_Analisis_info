@@ -9,8 +9,7 @@
 ### Run
 
 ```bash
-pip install -r requirements.txt
-uvicorn main:app --reload
+bash run.sh
 ```
 
 ### Endpoints
@@ -22,9 +21,3 @@ uvicorn main:app --reload
 
 - [Swagger](http://localhost:8000/docs)
 - [Redoc](http://localhost:8000/redoc)
-
-### Tests
-
-```bash
-pytest
-```
