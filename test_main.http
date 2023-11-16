@@ -1,4 +1,4 @@
-# Test your FastAPI endpoints
+# Para probar los endpoints hacer click en Send Request
 
 GET http://127.0.0.1:8000/
 Accept: application/json
