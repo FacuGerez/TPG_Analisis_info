@@ -8,14 +8,13 @@ class TicketBase(BaseModel):
 
 
 class TicketCreate(TicketBase):
-    pass
+    state: str
 
 
 class Ticket(TicketBase):
     id: int
     client_id: int
     product_id: int
-    state: str
 
     class Config:
         orm_mode = True

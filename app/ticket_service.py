@@ -1,8 +1,9 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from ticket_table import Ticket
+
 from ticket_model import TicketCreate
 from ticket_repository import TicketRepository
+from ticket_table import Ticket
 
 
 class TicketService:
@@ -28,7 +29,11 @@ class TicketService:
         ticket_actualizable = self.ticket_repository.get_ticket(ticket_id)
         if ticket_actualizable is None:
             raise HTTPException(status_code=400, detail="El ticket no fue encontrado")
-        # falta ajustar esta parte.....
+        ticket_actualizable.state = ticket.state
+        ticket_actualizable.priority = ticket.priority
+        ticket_actualizable.severity = ticket.severity
+        ticket_actualizable.title = ticket.title
+        return self.ticket_repository.save_tickets(ticket_actualizable)
 
     def delete_ticket(self, ticket_id: int):
         ticket_eliminable = self.ticket_repository.get_ticket(ticket_id)
