@@ -2,8 +2,6 @@ from sqlalchemy.orm import Session
 from App.database.tables.ticket import Ticket
 
 
-# from ..model.ticket import .
-
 class TicketRepository:
     def __init__(self, db: Session):
         self.db: Session = db

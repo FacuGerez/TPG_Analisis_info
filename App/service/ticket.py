@@ -15,9 +15,12 @@ class TicketService:
     def get_ticket(self, ticket_id: int) -> Ticket:
         return self.ticket_repository.get_ticket(ticket_id)
 
-    def create_ticket(self, ticket: TicketCreate, client_id: int):
+    def create_ticket(self, ticket: TicketCreate, client_id: int, product_id: int):
         ticket_data = ticket.dict()
-        ticket_data.update({"owner_id": client_id})
+        ticket_data.update({
+            "client_id": client_id,
+            "product_id": product_id
+        })
         ticket_nuevo = Ticket(**ticket_data)
         return self.ticket_repository.save_tickets(ticket_nuevo)
 
@@ -25,6 +28,7 @@ class TicketService:
         ticket_actualizable = self.ticket_repository.get_ticket(ticket_id)
         if ticket_actualizable is None:
             raise HTTPException(status_code=400, detail="El ticket no fue encontrado")
+        # falta ajustar esta parte.....
 
     def delete_ticket(self, ticket_id: int):
         ticket_eliminable = self.ticket_repository.get_ticket(ticket_id)
