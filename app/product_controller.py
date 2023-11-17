@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 
-from app.model.product import Product
+from product_model import Product
 
 router = APIRouter(
     prefix="/product",
@@ -25,6 +25,7 @@ async def products():
 @router.post("/{product_id}")
 async def product(product_id: int):
     product_deseado = filter(lambda p: p.id == product_id, list_products)
+    print(product_deseado)
     if product_deseado is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, detail="No se encontro el producto deseado")
     return product_deseado

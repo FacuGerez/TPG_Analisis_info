@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from controllers.client import router as r_client
-from controllers.ticket import router as r_ticket
-from controllers.product import router as r_product
-from app.database.database import engine, Base
+from client_controller import router as r_client
+from ticket_controller import router as r_ticket
+from product_controller import router as r_product
+from db import engine, Base
 
 
 Base.metadata.create_all(bind=engine)

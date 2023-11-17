@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from app.database.database import Base
+from db import Base
 
 
 class Ticket(Base):
