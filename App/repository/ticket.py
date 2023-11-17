@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Session
-
-from ..database.ticket import Ticket
+from App.database.tables.ticket import Ticket
 
 
 # from ..model.ticket import .

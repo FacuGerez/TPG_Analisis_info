@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class Bug(BaseModel):
     id: int
     description: str
