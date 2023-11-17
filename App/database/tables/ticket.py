@@ -12,5 +12,5 @@ class Ticket(Base):
     severity = Column(String)
     priority = Column(String)
     state = Column(String)
-    owner_id = Column(Integer, ForeignKey("clients.id"))
-    owner = relationship("Client", back_populates="tickets")
+    client_id = Column(Integer)
+    product_id = Column(Integer, index=True)

@@ -13,7 +13,8 @@ class TicketCreate(TicketBase):
 
 class Ticket(TicketBase):
     id: int
-    owner_id: int
+    client_id: int
+    product_id: int
     state: str
 
     class Config:
