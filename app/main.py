@@ -7,7 +7,9 @@ from db import engine, Base
 
 
 Base.metadata.create_all(bind=engine)
-app = FastAPI()
+app = FastAPI(
+    tags=["root"],
+)
 
 
 # Routers
