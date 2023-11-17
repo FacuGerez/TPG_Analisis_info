@@ -5,6 +5,6 @@ router = APIRouter(
 )
 
 
-@router.get("/clients")
+@router.get("/product/{product_id}/clients")
 async def clients():
     return {"message": "Aca van todos los clientes"}
