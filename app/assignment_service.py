@@ -1,8 +1,8 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from app.asigment_model import AssignmentCreate
-from app.asigment_repository import AssignmentRepository
-from app.asigment_table import Assignment
+from assignment_model import AssignmentCreate
+from assignment_repository import AssignmentRepository
+from assignment_table import Assignment
 
 
 class AssignmentService:
