@@ -23,11 +23,7 @@ class AssignmentService:
         assignment_data.update({
             "ticket_id": ticket_id
         })
-        print(assignment_data)
         assignment_new = Assignment(**assignment_data)
-        print(assignment_new.ticket_id)
-        print(assignment_new.id)
-        print(assignment_new.task_id)
         return self.assignment_repository.save_assignments(assignment_new)
 
     def update_assignment(self, assignment_id: int, assignment: AssignmentCreate):
