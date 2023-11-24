@@ -28,7 +28,7 @@ async def get_assignments(task_id: int, db: Session = Depends(get_db)):
     return service_assignment.get_assignments_by_task(task_id)
 
 
-@router.get("/ticket/{ticket_id}/assignment/{assignment_id}")
+@router.get("/assignment/{assignment_id}")
 async def get_assigment(assignment_id: int, db: Session = Depends(get_db)):
     service_assignment: AssignmentService = AssignmentService(db)
     return service_assignment.get_assignment(assignment_id)

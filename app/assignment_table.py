@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer
+from sqlalchemy import Column, Integer, ForeignKey
 from db import Base
 
 
@@ -7,4 +7,4 @@ class Assignment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     ticket_id = Column(Integer)
-    tasks_id = Column(Integer)
+    task_id = Column(Integer)
