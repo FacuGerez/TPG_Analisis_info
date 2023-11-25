@@ -13,6 +13,10 @@ class TicketRepository:
         Ticket]:  # skip: int = 0, limit: int = 100 para poner un limite
         return self.db.query(Ticket).filter(Ticket.product_id == product_id).all()
 
+    #Por si implementamos busqueda por titulo
+    def get_tickets_by_title(self, title: str) -> list[Ticket]: 
+        return self.db.query(Ticket).filter(Ticket.title == title).all()
+
     def save_tickets(self, ticket: Ticket) -> Ticket:
         self.db.add(ticket)
         self.db.commit()

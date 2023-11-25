@@ -28,6 +28,12 @@ async def get_ticket(ticket_id: int, db: Session = Depends(get_db)):
     service_ticket: TicketService = TicketService(db)
     return service_ticket.get_ticket(ticket_id)
 
+@router.get("/")
+async def get_ticket_by_title(ticket_title: str, db: Session = Depends(get_db)):
+    service_ticket: TicketService = TicketService(db)
+    return service_ticket.get_ticket_by_title(ticket_title)
+
+
 
 @router.put("/{ticket_id}")
 async def update_ticket(ticket_id: int, ticket: TicketCreate, db: Session = Depends(get_db)):
