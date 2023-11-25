@@ -5,6 +5,7 @@ class TicketBase(BaseModel):
     title: str
     severity: str
     priority: str
+    description: str
 
 
 class TicketCreate(TicketBase):

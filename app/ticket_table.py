@@ -13,3 +13,4 @@ class Ticket(Base):
     state = Column(String)
     client_id = Column(Integer)
     product_id = Column(Integer, index=True)
+    description = Column(String)

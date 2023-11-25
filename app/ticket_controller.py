@@ -11,7 +11,7 @@ router = APIRouter(
 
 
 @router.post("/client/{client_id}")
-async def create_ticket(product_id: int, client_id: int, ticket: TicketCreate, db: Session = Depends(get_db)):
+async def create_ticket(product_id: int, client_id: int, ticket:  TicketCreate, db: Session = Depends(get_db)):
     service_ticket: TicketService = TicketService(db)
     ticket_new = service_ticket.create_ticket(ticket, product_id, client_id)
     return ticket_new

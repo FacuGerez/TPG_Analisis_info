@@ -12,7 +12,6 @@ class ProductCreate(ProductBase):
 
 class Product(ProductBase):
     nroDeProducto: int
-    state: str
 
     class Config:
         orm_mode = True

@@ -10,7 +10,7 @@ class TicketService:
     def __init__(self, db: Session):
         self.ticket_repository: TicketRepository = TicketRepository(db)
 
-    def get_tickets(self, product_id: int) -> list[[Ticket]]:
+    def get_tickets(self, product_id: int) -> list[Ticket]:
         return self.ticket_repository.get_tickets(product_id)
 
     def get_ticket(self, ticket_id: int) -> Ticket:

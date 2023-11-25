@@ -8,12 +8,12 @@ router = APIRouter(
 )
 
 list_products = [
-    Product(nroDeProducto=1, name="SIU-guarani", state="Finalizado", version="12.01"),
-    Product(nroDeProducto=2, name="Gestion-de-Molinetes", state="En Proceso", version="3.14.05"),
-    Product(nroDeProducto=3, name="Gestion-de-Molinetes", state="En Proceso", version="3.14.18"),
-    Product(nroDeProducto=4, name="??", state="En Pausa", version="12.01"),
-    Product(nroDeProducto=5, name="??", state="Finalizado", version="12.01"),
-    Product(nroDeProducto=6, name="??", state="Correccion de Errores", version="12.01")
+    Product(nroDeProducto=1, name="SIU-guarani", version="12.01"),
+    Product(nroDeProducto=2, name="Gestion-de-Molinetes", version="3.14.05"),
+    Product(nroDeProducto=3, name="Gestion-de-Molinetes", version="3.14.18"),
+    Product(nroDeProducto=4, name="??", version="12.01"),
+    Product(nroDeProducto=5, name="??",  version="12.01"),
+    Product(nroDeProducto=6, name="??", version="12.01")
 ]
 
 

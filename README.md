@@ -4,7 +4,10 @@
 
 ### Integrantes
 
-....
+Victoria Avalos 108434
+Facundo Gerez 109429
+Martina Florencia Souza 109200
+Ignacio Garcia Pizales 105043
 
 ### Run
 
