@@ -9,8 +9,9 @@ class TicketBase(BaseModel):
 
 
 class TicketCreate(TicketBase):
-    state: str
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.state = "Abierto"
 
 class Ticket(TicketBase):
     id: int
