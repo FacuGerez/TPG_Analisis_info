@@ -9,6 +9,7 @@ class TicketBase(BaseModel):
 
 
 class TicketCreate(TicketBase):
+    #Para que el estado se inicialice en Abierto
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.state = "Abierto"
