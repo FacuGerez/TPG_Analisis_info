@@ -8,9 +8,12 @@ class Ticket(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String)
+    description = Column(String)
+    state = Column(String)
     severity = Column(String)
     priority = Column(String)
-    state = Column(String)
+    date_creacion = Column(String)
+
     client_id = Column(Integer)
     product_id = Column(Integer, index=True)
-    description = Column(String)
+

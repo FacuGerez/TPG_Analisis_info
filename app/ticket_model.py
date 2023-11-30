@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class TicketBase(BaseModel):
@@ -9,10 +10,12 @@ class TicketBase(BaseModel):
 
 
 class TicketCreate(TicketBase):
-    #Para que el estado se inicialice en Abierto
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.state = "Abierto"
+    # Para que el estado se inicialice en Abierto
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.state: str = "Abierto"
+        self.date_creacion: str = datetime.now().strftime("Fecha : %d / %m / %Y , Horario : %H:%M:%S")
+
 
 class Ticket(TicketBase):
     id: int

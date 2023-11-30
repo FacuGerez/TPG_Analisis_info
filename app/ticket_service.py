@@ -1,6 +1,5 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-
 from ticket_model import TicketCreate
 from ticket_repository import TicketRepository
 from ticket_table import Ticket
