@@ -21,6 +21,14 @@ class TicketService:
 
     def create_ticket(self, ticket: TicketCreate, product_id: int, client_id: int) -> Ticket:
         ticket_data = ticket.dict()
+
+        if ticket_data["severity"] not in ["S1", "S2", "S3", "S4"]:
+            raise HTTPException(status_code=400, detail="Debe seleccionar una severidad correcta")
+        if ticket_data["priority"] not in ["Alta", "Media", "Baja"]:
+            raise HTTPException(status_code=400, detail="Debe seleccionar una prioridad correcta")
+        if ticket_data["description"] == "" :
+            raise HTTPException(status_code=400, detail="Debe ingresar una descripción")
+        
         ticket_data.update({
             "client_id": client_id,
             "product_id": product_id
