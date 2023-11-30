@@ -10,8 +10,8 @@ class TicketService:
     def __init__(self, db: Session):
         self.ticket_repository: TicketRepository = TicketRepository(db)
 
-    def get_tickets(self, product_id: int) -> list[Ticket]:
-        return self.ticket_repository.get_tickets(product_id)
+    def get_tickets(self, version_id: int) -> list[Ticket]:
+        return self.ticket_repository.get_tickets(version_id)
 
     def get_ticket(self, ticket_id: int) -> Ticket:
         return self.ticket_repository.get_ticket(ticket_id)
@@ -19,7 +19,7 @@ class TicketService:
     def get_ticket_by_title(self, ticket_title: str) -> list[Ticket]:
         return self.ticket_repository.get_tickets_by_title(ticket_title)
 
-    def create_ticket(self, ticket: TicketCreate, product_id: int, client_id: int) -> Ticket:
+    def create_ticket(self, ticket: TicketCreate, version_id: int, client_id: int) -> Ticket:
         ticket_data = ticket.dict()
 
         if ticket_data["severity"] not in ["S1", "S2", "S3", "S4"]:
@@ -31,7 +31,7 @@ class TicketService:
 
         ticket_data.update({
             "client_id": client_id,
-            "product_id": product_id,
+            "version_id": version_id,
             "state": "Abierto",
             "date_creacion": datetime.now().strftime("Fecha : %d / %m / %Y , Horario : %H:%M:%S")
         })

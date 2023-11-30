@@ -6,12 +6,10 @@ from assignment_controller import router as r_assignment
 from product_controller import router as r_product
 from db import engine, Base
 
-
 Base.metadata.create_all(bind=engine)
 app = FastAPI(
     tags=["root"],
 )
-
 
 # Routers
 app.include_router(r_ticket)
@@ -27,3 +25,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/")
+async def root():
+    return {"detail": "Aca va la redireccion al modulo de soporte o al de proyecto"}

@@ -15,5 +15,5 @@ class Ticket(Base):
     date_creacion = Column(String)
 
     client_id = Column(Integer)
-    product_id = Column(Integer, index=True)
+    version_id = Column(Integer, index=True)
 

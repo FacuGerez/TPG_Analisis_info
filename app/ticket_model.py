@@ -19,7 +19,7 @@ class TicketUpdate(TicketBase):
 class Ticket(TicketBase):
     id: int
     client_id: int
-    product_id: int
+    version_id: int
     state: str
     date_creacion: str
 

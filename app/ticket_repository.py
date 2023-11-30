@@ -9,8 +9,8 @@ class TicketRepository:
     def get_ticket(self, ticket_id: int) -> Ticket:
         return self.db.query(Ticket).get(ticket_id)
 
-    def get_tickets(self, product_id: int) -> list[Ticket]:  # skip: int = 0, limit: int = 100 para poner un limite
-        return self.db.query(Ticket).filter(Ticket.product_id == product_id).all()
+    def get_tickets(self, version_id: int) -> list[Ticket]:  # skip: int = 0, limit: int = 100 para poner un limite
+        return self.db.query(Ticket).filter(Ticket.version_id == version_id).all()
 
     # Por si implementamos busqueda por titulo
     def get_tickets_by_title(self, title: str) -> list[Ticket]:

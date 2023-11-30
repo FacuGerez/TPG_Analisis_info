@@ -5,22 +5,22 @@ from ticket_model import TicketCreate, TicketUpdate
 from ticket_service import TicketService
 
 router = APIRouter(
-    prefix="/product/{product_id}/ticket",
+    prefix="/product/{product_id}/version/{version_id}/ticket",
     tags=["ticket"],
 )
 
 
 @router.post("/client/{client_id}")
-async def create_ticket(product_id: int, client_id: int, ticket: TicketCreate, db: Session = Depends(get_db)):
+async def create_ticket(version_id: int, client_id: int, ticket: TicketCreate, db: Session = Depends(get_db)):
     service_ticket: TicketService = TicketService(db)
-    ticket_new = service_ticket.create_ticket(ticket, product_id, client_id)
+    ticket_new = service_ticket.create_ticket(ticket, version_id, client_id)
     return ticket_new
 
 
 @router.get("/")
-async def get_tickets(product_id: int, db: Session = Depends(get_db)):
+async def get_tickets(version_id: int, db: Session = Depends(get_db)):
     service_ticket: TicketService = TicketService(db)
-    return service_ticket.get_tickets(product_id)
+    return service_ticket.get_tickets(version_id)
 
 
 @router.get("/{ticket_id}")
