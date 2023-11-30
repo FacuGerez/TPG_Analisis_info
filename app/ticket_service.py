@@ -26,9 +26,9 @@ class TicketService:
             raise HTTPException(status_code=400, detail="Debe seleccionar una severidad correcta")
         if ticket_data["priority"] not in ["Alta", "Media", "Baja"]:
             raise HTTPException(status_code=400, detail="Debe seleccionar una prioridad correcta")
-        if ticket_data["description"] == "" :
+        if ticket_data["description"] == "":
             raise HTTPException(status_code=400, detail="Debe ingresar una descripción")
-        
+
         ticket_data.update({
             "client_id": client_id,
             "product_id": product_id
