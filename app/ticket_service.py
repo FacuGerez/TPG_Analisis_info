@@ -1,8 +1,9 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from ticket_model import TicketCreate
+from ticket_model import TicketCreate, TicketUpdate
 from ticket_repository import TicketRepository
 from ticket_table import Ticket
+from datetime import datetime
 
 
 class TicketService:
@@ -30,12 +31,14 @@ class TicketService:
 
         ticket_data.update({
             "client_id": client_id,
-            "product_id": product_id
+            "product_id": product_id,
+            "state": "Abierto",
+            "date_creacion": datetime.now().strftime("Fecha : %d / %m / %Y , Horario : %H:%M:%S")
         })
         ticket_nuevo = Ticket(**ticket_data)
         return self.ticket_repository.save_tickets(ticket_nuevo)
 
-    def update_ticket(self, ticket_id: int, ticket: TicketCreate):
+    def update_ticket(self, ticket_id: int, ticket: TicketUpdate):
         ticket_actualizable = self.ticket_repository.get_ticket(ticket_id)
         if ticket_actualizable is None:
             raise HTTPException(status_code=400, detail="El ticket no fue encontrado")
