@@ -16,9 +16,6 @@ class TicketService:
     def get_ticket(self, ticket_id: int) -> Ticket:
         return self.ticket_repository.get_ticket(ticket_id)
 
-    def get_ticket_by_title(self, ticket_title: str) -> list[Ticket]:
-        return self.ticket_repository.get_tickets_by_title(ticket_title)
-
     def create_ticket(self, ticket: TicketCreate, version_id: int, client_id: int) -> Ticket:
         ticket_data = ticket.dict()
 
