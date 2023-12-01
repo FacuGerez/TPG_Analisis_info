@@ -7,28 +7,28 @@ router = APIRouter(
 )
 
 list_versions = [
-    Version(id=1, version="3.14.04", product_id=1),
-    Version(id=2, version="3.14.05", product_id=1),
-    Version(id=3, version="3.14.06", product_id=1),
-    Version(id=4, version="3.14.07", product_id=1),
-    Version(id=5, version="3.14.08", product_id=1),
-    Version(id=6, version="3.14.09", product_id=1),
-    Version(id=7, version="3.14.10", product_id=1),
-    Version(id=8, version="3.14.01", product_id=1),
-    Version(id=9, version="3.15.02", product_id=1),
-    Version(id=10, version="12.1.01", product_id=2),
-    Version(id=11, version="12.1.02", product_id=2),
-    Version(id=12, version="12.1.03", product_id=2),
-    Version(id=13, version="12.1.04", product_id=2),
-    Version(id=14, version="12.1.05", product_id=2),
-    Version(id=15, version="12.1.06", product_id=2),
-    Version(id=16, version="12.1.07", product_id=2),
-    Version(id=17, version="7.8.01", product_id=3),
-    Version(id=18, version="7.8.02", product_id=3),
-    Version(id=19, version="7.8.03", product_id=3),
-    Version(id=20, version="7.8.04", product_id=3),
-    Version(id=21, version="7.8.05", product_id=3),
-    Version(id=22, version="7.8.06", product_id=3)
+    Version(id=1, version="3.14.229773.04", product_id=1),
+    Version(id=2, version="3.14.229773.05", product_id=1),
+    Version(id=3, version="3.14.229773.06", product_id=1),
+    Version(id=4, version="3.14.229773.07", product_id=1),
+    Version(id=5, version="3.14.229773.08", product_id=1),
+    Version(id=6, version="3.14.229773.09", product_id=1),
+    Version(id=7, version="3.14.229773.10", product_id=1),
+    Version(id=8, version="3.14.229773.01", product_id=1),
+    Version(id=9, version="3.15.499315.02", product_id=1),
+    Version(id=10, version="12.1.5335185.01", product_id=2),
+    Version(id=11, version="12.1.5335185.02", product_id=2),
+    Version(id=12, version="12.1.5335185.03", product_id=2),
+    Version(id=13, version="12.1.5335185.04", product_id=2),
+    Version(id=14, version="12.1.5335185.05", product_id=2),
+    Version(id=15, version="12.1.5335185.06", product_id=2),
+    Version(id=16, version="12.1.5335185.07", product_id=2),
+    Version(id=17, version="7.8.45801", product_id=3),
+    Version(id=18, version="7.8.45802", product_id=3),
+    Version(id=19, version="7.8.45803", product_id=3),
+    Version(id=20, version="7.8.45804", product_id=3),
+    Version(id=21, version="7.8.45805", product_id=3),
+    Version(id=22, version="7.8.45806", product_id=3)
 ]
 
 
@@ -38,6 +38,8 @@ async def versions(product_id: int):
     for v in list_versions:
         if v.product_id == product_id:
             final_list.append(v)
+    if len(final_list) == 0:
+        raise HTTPException(status.HTTP_204_NO_CONTENT, detail="No hay elementos para este producto")
     return final_list
 
 

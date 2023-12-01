@@ -18,13 +18,13 @@ async def create_ticket(version_id: int, client_id: int, ticket: TicketCreate, d
 
 
 @router.get("/")
-async def get_tickets(version_id: int, db: Session = Depends(get_db)):
+async def get_tickets_by_version(version_id: int, db: Session = Depends(get_db)):
     service_ticket: TicketService = TicketService(db)
     return service_ticket.get_tickets(version_id)
 
 
 @router.get("/{ticket_id}")
-async def get_ticket(ticket_id: int, db: Session = Depends(get_db)):
+async def get_ticket_by_id(ticket_id: int, db: Session = Depends(get_db)):
     service_ticket: TicketService = TicketService(db)
     return service_ticket.get_ticket(ticket_id)
 

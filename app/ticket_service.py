@@ -1,4 +1,4 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from ticket_model import TicketCreate, TicketUpdate
 from ticket_repository import TicketRepository
@@ -23,11 +23,13 @@ class TicketService:
         ticket_data = ticket.dict()
 
         if ticket_data["severity"] not in ["S1", "S2", "S3", "S4"]:
-            raise HTTPException(status_code=400, detail="Debe seleccionar una severidad correcta")
+            raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una severidad "
+                                                                                      "correcta")
         if ticket_data["priority"] not in ["Alta", "Media", "Baja"]:
-            raise HTTPException(status_code=400, detail="Debe seleccionar una prioridad correcta")
+            raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una prioridad "
+                                                                                      "correcta")
         if ticket_data["description"] == "":
-            raise HTTPException(status_code=400, detail="Debe ingresar una descripción")
+            raise HTTPException(status.HTTP_204_NO_CONTENT, detail="Debe ingresar una descripción")
 
         ticket_data.update({
             "client_id": client_id,
@@ -41,7 +43,7 @@ class TicketService:
     def update_ticket(self, ticket_id: int, ticket: TicketUpdate):
         ticket_actualizable = self.ticket_repository.get_ticket(ticket_id)
         if ticket_actualizable is None:
-            raise HTTPException(status_code=400, detail="El ticket no fue encontrado")
+            raise HTTPException(status.HTTP_404_NOT_FOUND, detail="El ticket no fue encontrado")
         ticket_actualizable.state = ticket.state
         ticket_actualizable.priority = ticket.priority
         ticket_actualizable.severity = ticket.severity
@@ -51,5 +53,5 @@ class TicketService:
     def delete_ticket(self, ticket_id: int):
         ticket_eliminable = self.ticket_repository.get_ticket(ticket_id)
         if ticket_eliminable is None:
-            raise HTTPException(status_code=404, detail="El ticket no fue encontrado")
+            raise HTTPException(status.HTTP_404_NOT_FOUND, detail="El ticket no fue encontrado")
         return self.ticket_repository.delete(ticket_eliminable)
