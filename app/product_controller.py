@@ -10,10 +10,7 @@ router = APIRouter(
 list_products = [
     Product(nroDeProducto=1, name="SIU-guarani"),
     Product(nroDeProducto=2, name="Gestion-de-Molinetes"),
-    Product(nroDeProducto=3, name="Gestion-de-Molinetes"),
-    Product(nroDeProducto=4, name="??"),
-    Product(nroDeProducto=5, name="??"),
-    Product(nroDeProducto=6, name="??")
+    Product(nroDeProducto=3, name="League of legends"),
 ]
 
 
