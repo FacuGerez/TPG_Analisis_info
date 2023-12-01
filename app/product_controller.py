@@ -19,7 +19,7 @@ async def products():
     return list_products
 
 
-@router.post("/{product_id}")
+@router.get("/{product_id}")
 async def product(product_id: int):
     for p in list_products:
         if p.nroDeProducto == product_id:

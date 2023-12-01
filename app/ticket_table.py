@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, String
-
 from db import Base
 
 
@@ -16,4 +15,3 @@ class Ticket(Base):
 
     client_id = Column(Integer)
     version_id = Column(Integer, index=True)
-

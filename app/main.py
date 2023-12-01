@@ -12,6 +12,12 @@ app = FastAPI(
     tags=["root"],
 )
 
+
+@app.get("/")
+async def root():
+    return {"detail": "Aca va la redireccion al modulo de soporte o al de proyecto"}
+
+
 # Routers
 app.include_router(r_product)
 app.include_router(r_version)
@@ -27,8 +33,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.get("/")
-async def root():
-    return {"detail": "Aca va la redireccion al modulo de soporte o al de proyecto"}

@@ -21,4 +21,4 @@ class TicketRepository:
     def delete(self, ticket: Ticket):
         self.db.delete(ticket)
         self.db.commit()
-        return None
+        return True

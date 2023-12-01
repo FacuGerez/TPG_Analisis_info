@@ -9,6 +9,10 @@ class AssignmentCreate(AssignmentBase):
     pass
 
 
+class AssignmentUpdate(AssignmentBase):
+    task_id: int
+
+
 class Assignment(AssignmentBase):
     id: int
     ticket_id: int

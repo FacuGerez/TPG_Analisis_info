@@ -43,7 +43,7 @@ async def versions(product_id: int):
     return final_list
 
 
-@router.post("/{version_id}")
+@router.get("/{version_id}")
 async def version(version_id: int):
     for v in list_versions:
         if v.id == version_id:

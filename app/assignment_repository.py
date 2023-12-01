@@ -24,4 +24,4 @@ class AssignmentRepository:
     def delete(self, assignment: Assignment):
         self.db.delete(assignment)
         self.db.commit()
-        return None
+        return True

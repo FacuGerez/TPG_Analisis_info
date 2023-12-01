@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from db import get_db
-from assignment_model import AssignmentCreate
+from assignment_model import AssignmentCreate, AssignmentUpdate
 from assignment_service import AssignmentService
 
 router = APIRouter(
@@ -36,7 +36,7 @@ async def get_assigment(assignment_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{assignment_id}")
-async def update_assigment(assignment_id: int, assignment: AssignmentCreate, db: Session = Depends(get_db)):
+async def update_assigment(assignment_id: int, assignment: AssignmentUpdate, db: Session = Depends(get_db)):
     service_assignment: AssignmentService = AssignmentService(db)
     return service_assignment.update_assignment(assignment_id, assignment)
 
