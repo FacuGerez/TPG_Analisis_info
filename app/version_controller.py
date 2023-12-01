@@ -36,7 +36,7 @@ list_versions = [
 async def versions(product_id: int):
     final_list: list[Version] = []
     for v in list_versions:
-        if v.product_id == product_id :
+        if v.product_id == product_id:
             final_list.append(v)
     return final_list
 
