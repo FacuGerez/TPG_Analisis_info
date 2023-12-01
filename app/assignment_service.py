@@ -1,4 +1,4 @@
-from fastapi import HTTPException
+from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from assignment_model import AssignmentCreate
 from assignment_repository import AssignmentRepository
@@ -29,7 +29,7 @@ class AssignmentService:
     def update_assignment(self, assignment_id: int, assignment: AssignmentCreate):
         assignment_update = self.assignment_repository.get_assignment(assignment_id)
         if assignment_update is None:
-            raise HTTPException(status_code=404, detail="The assignment wasnt found")
+            raise HTTPException(status.HTTP_404_NOT_FOUND, detail="No se encontro la asignacion deseada")
         assignment_update.state = assignment.state
         assignment_update.priority = assignment.priority
         assignment_update.severity = assignment.severity
@@ -39,5 +39,5 @@ class AssignmentService:
     def delete_assignment(self, assignment_id: int):
         assignment_delety = self.assignment_repository.get_assignment(assignment_id)
         if assignment_delety is None:
-            raise HTTPException(status_code=404, detail="The assignment wasnt found")
+            raise HTTPException(status.HTTP_404_NOT_FOUND, detail="No se encontro la asignacion deseada")
         return self.assignment_repository.delete(assignment_delety)
