@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from version_model import Version
 
 router = APIRouter(
-    prefix="/product/{product_id}/version",
+    prefix="/version",
     tags=["version"],
 )
 
@@ -32,7 +32,7 @@ list_versions = [
 ]
 
 
-@router.get("/")
+@router.get("/product/{product_id}")
 async def versions(product_id: int):
     final_list: list[Version] = []
     for v in list_versions:

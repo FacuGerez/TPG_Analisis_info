@@ -2,7 +2,7 @@ from requests import Session
 from fastapi import APIRouter, status
 
 router = APIRouter(
-    prefix="/product/{product_id}/version/{version_id}/client",
+    prefix="/client",
     tags=["client"],
     responses={status.HTTP_404_NOT_FOUND: {"description": "No se encontraron los clientes"}},
 )
