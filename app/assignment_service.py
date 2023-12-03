@@ -10,16 +10,10 @@ class AssignmentService:
         self.assignment_repository: AssignmentRepository = AssignmentRepository(db)
 
     def get_assignments_by_ticket(self, ticket_id: int) -> list[Assignment]:
-        assigments: list[Assignment] = self.assignment_repository.get_assignments_by_ticket(ticket_id)
-        if len(assigments) == 0:
-            raise HTTPException(status.HTTP_204_NO_CONTENT, detail="No hay asignaciones para este ticket ")
-        return assigments
+        return self.assignment_repository.get_assignments_by_ticket(ticket_id)
 
     def get_assignments_by_task(self, task_id: int) -> list[Assignment]:
-        assigments: list[Assignment] = self.assignment_repository.get_assignments_by_task(task_id)
-        if len(assigments) == 0:
-            raise HTTPException(status.HTTP_204_NO_CONTENT, detail="No hay asignaciones para esta tarea ")
-        return assigments
+        return self.assignment_repository.get_assignments_by_task(task_id)
 
     def get_assignment(self, assignment_id: int) -> Assignment:
         assignment: Assignment = self.assignment_repository.get_assignment(assignment_id)

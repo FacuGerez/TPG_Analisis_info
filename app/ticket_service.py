@@ -11,10 +11,7 @@ class TicketService:
         self.ticket_repository: TicketRepository = TicketRepository(db)
 
     def get_tickets(self, version_id: int) -> list[Ticket]:
-        tickets: list[Ticket] = self.ticket_repository.get_tickets(version_id)
-        if len(tickets) == 0:
-            raise HTTPException(status.HTTP_204_NO_CONTENT, detail="No hay tickets para esta version ")
-        return tickets
+        return self.ticket_repository.get_tickets(version_id)
 
     def get_ticket(self, ticket_id: int) -> Ticket:
         ticket: Ticket = self.ticket_repository.get_ticket(ticket_id)
