@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .client_controller import router as r_client
-from .ticket_controller import router as r_ticket
-from .assignment_controller import router as r_assignment
-from .product_controller import router as r_product
-from .version_controller import router as r_version
-from .db import engine, Base
+from client_controller import router as r_client
+from ticket_controller import router as r_ticket
+from assignment_controller import router as r_assignment
+from product_controller import router as r_product
+from version_controller import router as r_version
+from db import engine, Base
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI(

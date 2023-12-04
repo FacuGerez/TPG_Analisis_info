@@ -1,8 +1,8 @@
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
-from .ticket_model import TicketCreate, TicketUpdate
-from .ticket_repository import TicketRepository
-from .ticket_table import Ticket
+from ticket_model import TicketCreate, TicketUpdate
+from ticket_repository import TicketRepository
+from ticket_table import Ticket
 from datetime import datetime
 
 
