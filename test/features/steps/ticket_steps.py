@@ -1,7 +1,7 @@
 from behave import given, when, then
 from fastapi import status, HTTPException
 from unittest.mock import MagicMock
-from app.ticket_model import TicketCreate
+from app.ticket_model import TicketCreate, TicketUpdate
 from app.ticket_service import TicketService
 
 TICKET_DATA = {
@@ -15,14 +15,14 @@ DB = MagicMock()
 
 @given('a support employee wants to log a ticket and fills out all required fields')
 def step_impl(context):
-    ticket: dict = TICKET_DATA
+    ticket: dict = TICKET_DATA.copy()
     context.ticket_data = ticket
     pass
 
 
 @given('a support employee wants to register a ticket and does not provide a description')
 def step_impl(context):
-    ticket: dict = TICKET_DATA
+    ticket: dict = TICKET_DATA.copy()
     ticket["description"] = ""
     context.ticket_data = ticket
     pass
@@ -30,7 +30,7 @@ def step_impl(context):
 
 @given('a support employee wants to register a ticket and does not select a severity')
 def step_impl(context):
-    ticket: dict = TICKET_DATA
+    ticket: dict = TICKET_DATA.copy()
     ticket["severity"] = ""
     context.ticket_data = ticket
     pass
@@ -38,7 +38,7 @@ def step_impl(context):
 
 @given('a support employee wants to register a ticket and does not select a priority')
 def step_impl(context):
-    ticket: dict = TICKET_DATA
+    ticket: dict = TICKET_DATA.copy()
     ticket["priority"] = ""
     context.ticket_data = ticket
     pass
@@ -49,15 +49,22 @@ def step_impl(context):
     'description)')
 def step_impl(context):
     context.idTicket = getTicketNew()
-    ticket: dict = TICKET_DATA
+    ticket: dict = TICKET_DATA.copy()
     ticket["priority"] = "baja"
     ticket["severity"] = "s2"
     ticket["description"] = "new description"
+    ticket["state"] = "Finished"
     context.ticket_data = ticket
     pass
 
 
 @when('they want to record the complaint in a ticket')
+def step_impl(context):
+    context.ticket_service = TicketService(DB)
+    pass
+
+
+@when('they choose to change them and you try to apply this')
 def step_impl(context):
     context.ticket_service = TicketService(DB)
     pass
@@ -104,5 +111,12 @@ def step_impl(context):
     pass
 
 
+@then('the ticket is update successfully')
+def step_impl(context):
+    assert context.ticket_service.update_ticket(context.idTicket, TicketUpdate(
+        **context.ticket_data)) is not None, "Se produjo un error al actualizar el ticket"
+    pass
+
+
 def getTicketNew() -> int:
-    return TicketService(DB).create_ticket(TicketCreate(**TICKET_DATA),1,1).id
+    return TicketService(DB).create_ticket(TicketCreate(**TICKET_DATA), 1, 1).id
