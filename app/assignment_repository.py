@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from assignment_table import Assignment
+from app.assignment_table import Assignment
 
 
 class AssignmentRepository:

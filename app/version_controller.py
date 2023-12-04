@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
-from version_model import Version
+from app.version_model import Version
 
 router = APIRouter(
     prefix="/version",

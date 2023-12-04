@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from db import get_db
-from assignment_model import AssignmentCreate, AssignmentUpdate
-from assignment_service import AssignmentService
+from app.db import get_db
+from app.assignment_model import AssignmentCreate, AssignmentUpdate
+from app.assignment_service import AssignmentService
 
 router = APIRouter(
     prefix="/assignment",

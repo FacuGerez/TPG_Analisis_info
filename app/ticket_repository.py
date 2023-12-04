@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from ticket_table import Ticket
+from app.ticket_table import Ticket
 
 
 class TicketRepository:
