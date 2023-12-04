@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from version_model import Version
 
 router = APIRouter(
-    prefix="/product/{product_id}/version",
+    prefix="/version",
     tags=["version"],
 )
 
@@ -32,14 +32,12 @@ list_versions = [
 ]
 
 
-@router.get("/")
+@router.get("/product/{product_id}")
 async def versions(product_id: int):
     final_list: list[Version] = []
     for v in list_versions:
         if v.product_id == product_id:
             final_list.append(v)
-    if len(final_list) == 0:
-        raise HTTPException(status.HTTP_204_NO_CONTENT, detail="No hay elementos para este producto")
     return final_list
 
 
