@@ -8,7 +8,7 @@ Feature: As a support employee, I want to be able to create tickets to report is
   Scenario: Support employee tries to create a ticket without providing a description
     Given a support employee wants to register a ticket and does not provide a description
      When they want to record the complaint in a ticket
-     Then he employee is informed that a description needs to be added and is asked to complete it
+     Then the employee is informed that a description needs to be added and is asked to complete it
 
   Scenario: Support employee tries to create a ticket without selecting a severity
     Given a support employee wants to register a ticket and does not select a severity

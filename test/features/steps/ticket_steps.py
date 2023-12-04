@@ -48,9 +48,45 @@ def step_impl(context):
     'a support employee wants to update some allowed field(s) of a ticket (severity, priority, status, name, '
     'description)')
 def step_impl(context):
-    context.idTicket = getTicketNew()
+    context.idTicket = GetTicketNew()
     ticket: dict = TICKET_DATA.copy()
     ticket["priority"] = "baja"
+    ticket["severity"] = "s2"
+    ticket["description"] = "new description"
+    ticket["state"] = "Finished"
+    context.ticket_data = ticket
+    pass
+
+
+@given('a support employee wants to update some allowed field(s) of a ticket and does not provide a description')
+def step_impl(context):
+    context.idTicket = GetTicketNew()
+    ticket: dict = TICKET_DATA.copy()
+    ticket["priority"] = "baja"
+    ticket["severity"] = "s2"
+    ticket["description"] = ""
+    ticket["state"] = "Finished"
+    context.ticket_data = ticket
+    pass
+
+
+@given('a support employee wants to update some allowed field(s) of a ticket and does not select a severity')
+def step_impl(context):
+    context.idTicket = GetTicketNew()
+    ticket: dict = TICKET_DATA.copy()
+    ticket["priority"] = "baja"
+    ticket["severity"] = ""
+    ticket["description"] = "new description"
+    ticket["state"] = "Finished"
+    context.ticket_data = ticket
+    pass
+
+
+@given('a support employee wants to update some allowed field(s) of a ticket and does not select a priority')
+def step_impl(context):
+    context.idTicket = GetTicketNew()
+    ticket: dict = TICKET_DATA.copy()
+    ticket["priority"] = ""
     ticket["severity"] = "s2"
     ticket["description"] = "new description"
     ticket["state"] = "Finished"
@@ -78,7 +114,7 @@ def step_impl(context):
     pass
 
 
-@then('he employee is informed that a description needs to be added and is asked to complete it')
+@then('the employee is informed that a description needs to be added and is asked to complete it')
 def step_impl(context):
     try:
         context.ticket_service.create_ticket(TicketCreate(**context.ticket_data), version_id=1,
@@ -118,5 +154,35 @@ def step_impl(context):
     pass
 
 
-def getTicketNew() -> int:
+@then('the employee is informed that it is necessary not to leave the description empty')
+def step_impl(context):
+    try:
+        context.ticket_service.update_ticket(context.idTicket, TicketUpdate(**context.ticket_data))
+    except HTTPException as e:
+        assert e.detail == "Debe ingresar una descripción"
+        assert e.status_code == status.HTTP_204_NO_CONTENT
+    pass
+
+
+@then('the employee is informed that a severity needs to be selected')
+def step_impl(context):
+    try:
+        context.ticket_service.update_ticket(context.idTicket, TicketUpdate(**context.ticket_data))
+    except HTTPException as e:
+        assert e.detail == "Debe seleccionar una severidad correcta"
+        assert e.status_code == status.HTTP_203_NON_AUTHORITATIVE_INFORMATION
+    pass
+
+
+@then('the employee is informed that a priority needs to be selected')
+def step_impl(context):
+    try:
+        context.ticket_service.update_ticket(context.idTicket, TicketUpdate(**context.ticket_data))
+    except HTTPException as e:
+        assert e.detail == "Debe seleccionar una prioridad correcta"
+        assert e.status_code == status.HTTP_203_NON_AUTHORITATIVE_INFORMATION
+    pass
+
+
+def GetTicketNew() -> int:
     return TicketService(DB).create_ticket(TicketCreate(**TICKET_DATA), 1, 1).id
