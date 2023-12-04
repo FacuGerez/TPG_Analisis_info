@@ -1,6 +1,6 @@
 from behave import given, when, then, step
-from app.ticket_service import TicketService
-from app.ticket_model import TicketCreate
+from ....app.ticket_service import TicketService
+from ....app.ticket_model import TicketCreate
 
 @given('a support employee wants to log a ticket and fills out all required fields')
 def step_impl(context):
