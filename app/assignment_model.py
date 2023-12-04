@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class AssignmentBase(BaseModel):
-    pass
+    task_id: int
 
 
 class AssignmentCreate(AssignmentBase):
@@ -10,13 +10,12 @@ class AssignmentCreate(AssignmentBase):
 
 
 class AssignmentUpdate(AssignmentBase):
-    task_id: int
+    pass
 
 
 class Assignment(AssignmentBase):
     id: int
     ticket_id: int
-    task_id: int
 
     class Config:
         orm_mode = True
