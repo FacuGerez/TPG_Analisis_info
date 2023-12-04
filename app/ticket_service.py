@@ -52,6 +52,7 @@ class TicketService:
 
         ticket_actualizable: Ticket = self.get_ticket(ticket_id)
         ticket_actualizable.state = ticket.state
+        ticket_actualizable.description = ticket.description
         ticket_actualizable.priority = ticket.priority
         ticket_actualizable.severity = ticket.severity
         ticket_actualizable.title = ticket.title
