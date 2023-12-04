@@ -20,17 +20,17 @@ class TicketService:
         return ticket
 
     def create_ticket(self, ticket: TicketCreate, version_id: int, client_id: int) -> Ticket:
-        ticket_data = ticket.dict()
 
-        if ticket_data["severity"] not in ["s1", "s2", "s3", "s4"]:
+        if ticket.severity not in ["s1", "s2", "s3", "s4"]:
             raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una severidad "
                                                                                       "correcta")
-        if ticket_data["priority"] not in ["alta", "media", "baja"]:
+        if ticket.priority not in ["alta", "media", "baja"]:
             raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una prioridad "
                                                                                       "correcta")
-        if ticket_data["description"] == "":
+        if ticket.description == "":
             raise HTTPException(status.HTTP_204_NO_CONTENT, detail="Debe ingresar una descripción")
 
+        ticket_data = ticket.dict()
         ticket_data.update({
             "client_id": client_id,
             "version_id": version_id,
@@ -42,14 +42,13 @@ class TicketService:
 
     def update_ticket(self, ticket_id: int, ticket: TicketUpdate) -> Ticket:
 
-        ticket_data = ticket.dict
-        if ticket_data["severity"] not in ["s1", "s2", "s3", "s4"]:
+        if ticket.severity not in ["s1", "s2", "s3", "s4"]:
             raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una severidad "
                                                                                       "correcta")
-        if ticket_data["priority"] not in ["alta", "media", "baja"]:
+        if ticket.priority not in ["alta", "media", "baja"]:
             raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una prioridad "
                                                                                       "correcta")
-        if ticket_data["description"] == "":
+        if ticket.description == "":
             raise HTTPException(status.HTTP_204_NO_CONTENT, detail="Debe ingresar una descripción")
 
         ticket_actualizable: Ticket = self.get_ticket(ticket_id)
