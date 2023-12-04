@@ -41,6 +41,17 @@ class TicketService:
         return self.ticket_repository.save_tickets(ticket_nuevo)
 
     def update_ticket(self, ticket_id: int, ticket: TicketUpdate) -> Ticket:
+
+        ticket_data = ticket.dict
+        if ticket_data["severity"] not in ["s1", "s2", "s3", "s4"]:
+            raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una severidad "
+                                                                                      "correcta")
+        if ticket_data["priority"] not in ["alta", "media", "baja"]:
+            raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una prioridad "
+                                                                                      "correcta")
+        if ticket_data["description"] == "":
+            raise HTTPException(status.HTTP_204_NO_CONTENT, detail="Debe ingresar una descripción")
+
         ticket_actualizable: Ticket = self.get_ticket(ticket_id)
         ticket_actualizable.state = ticket.state
         ticket_actualizable.priority = ticket.priority
