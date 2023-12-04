@@ -11,6 +11,11 @@ list_products = [
     Product(nroDeProducto=1, name="SIU-guarani"),
     Product(nroDeProducto=2, name="Gestion-de-Molinetes"),
     Product(nroDeProducto=3, name="League of legends"),
+    Product(nroDeProducto=4, name="Canva"),
+    Product(nroDeProducto=5, name="Aerolineas Emperador"),
+    Product(nroDeProducto=6, name="Paint en rosita"),
+    Product(nroDeProducto=7, name="Sistema de gestios contable"),
+    Product(nroDeProducto=8, name="Convertidor de archivos"),
 ]
 
 
