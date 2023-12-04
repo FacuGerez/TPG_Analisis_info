@@ -20,7 +20,6 @@ class TicketService:
         return ticket
 
     def create_ticket(self, ticket: TicketCreate, version_id: int, client_id: int) -> Ticket:
-
         if ticket.severity not in ["s1", "s2", "s3", "s4"]:
             raise HTTPException(status.HTTP_203_NON_AUTHORITATIVE_INFORMATION, detail="Debe seleccionar una severidad "
                                                                                       "correcta")
