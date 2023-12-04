@@ -94,6 +94,11 @@ def step_impl(context):
     pass
 
 
+@given('a support employee wants to delete a ticket')
+def step_impl(context):
+    context.idTicket = GetTicketNew()
+    pass
+
 @when('they want to record the complaint in a ticket')
 def step_impl(context):
     context.ticket_service = TicketService(DB)
@@ -105,6 +110,10 @@ def step_impl(context):
     context.ticket_service = TicketService(DB)
     pass
 
+@when('you decide to delete the ticket')
+def step_impl(context):
+    context.ticket_service = TicketService(DB)
+    pass
 
 @then('the ticket is created successfully')
 def step_impl(context):
@@ -183,6 +192,10 @@ def step_impl(context):
         assert e.status_code == status.HTTP_203_NON_AUTHORITATIVE_INFORMATION
     pass
 
+@then('the ticket is deleted successfully.')
+def step_impl(context):
+    assert context.ticket_service.delete_ticket(context.idTicket)
+    pass
 
 def GetTicketNew() -> int:
     return TicketService(DB).create_ticket(TicketCreate(**TICKET_DATA), 1, 1).id
